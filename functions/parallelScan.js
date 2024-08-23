@@ -8,7 +8,7 @@ const ddbDocClient = DynamoDBDocumentClient.from(dynamoDBClient);
 const segmentSize = 500;
 
 async function parallelScan(params, totalSegments) {
-    console.log("🚀 ~ parallelScan ~ params:", params)
+    // console.log("🚀 ~ parallelScan ~ params:", params)
     const promises = [];
 
     for (let i = 0; i < totalSegments; i++) {
@@ -83,7 +83,7 @@ const getOrdersParallel = async (filter=null) => {
             ':tv':`Orders_DDB2_${process.env.bluetag}`
         }
     }))
-    const totalSegments = Math.floor((tableInfo.Items[0].Count/segmentsize)+1)
+    const totalSegments = Math.floor((tableInfo.Items[0].Count/segmentSize)+1)
 
     const params = {
         TableName: `Orders_DDB2_${process.env.bluetag}`
@@ -114,7 +114,7 @@ const getOrderItemssParallel = async (filter=null) => {
             ':tv':`OrderItems_DDB2_${process.env.bluetag}`
         }
     }))
-    const totalSegments = Math.floor((tableInfo.Items[0].Count/segmentsize)+1)
+    const totalSegments = Math.floor((tableInfo.Items[0].Count/segmentSize)+1)
 
     const params = {
         TableName: `OrderItems_DDB2_${process.env.bluetag}`

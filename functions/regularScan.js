@@ -43,10 +43,10 @@ const getOrdersRegular = async (filter=null) => {
         }
     }
     var result;
-    let Items = []
+    var Items = []
     do {
         result = await ddbDocClient.send(new ScanCommand(params))
-        Items.concat(result.Items)
+        Items = Items.concat(result.Items)
         params['ExclusiveStartKey'] = result.LastEvaluatedKey;
     } while (result.LastEvaluatedKey);
 
@@ -68,10 +68,10 @@ const getOrderItemssRegular = async (filter=null) => {
         }
     }
     var result;
-    let Items = []
+    var Items = []
     do {
         result = await ddbDocClient.send(new ScanCommand(params))
-        Items.concat(result.Items)
+        Items = Items.concat(result.Items)
         params['ExclusiveStartKey'] = result.LastEvaluatedKey;
     } while (result.LastEvaluatedKey);
 

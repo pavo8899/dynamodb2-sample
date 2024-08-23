@@ -195,11 +195,15 @@ const deleteTables = async () => {
     const deleteUsersTable = new DeleteTableCommand({
         TableName: `Users_DDB2_${process.env.bluetag}`
     });
+    const deleteInfoTable = new DeleteTableCommand({
+        TableName: `Info_DDB2_${process.env.bluetag}`
+    });
 
     try {
         await dynamoDBClient.send(deleteOrderItemsTable);
         await dynamoDBClient.send(deleteOrdersTable);
         await dynamoDBClient.send(deleteUsersTable);
+        await dynamoDBClient.send(deleteInfoTable);
         return "Tables Deleted Correctly"
     } catch (err) {
         console.log("🚀 ~ deleteTables ~ err:", err)
